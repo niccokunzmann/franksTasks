@@ -16,3 +16,8 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+test/selenium_server.log
+test/selenium-server-standalone-2.25.0.jar
+
+testWebsite.rb

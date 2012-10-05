@@ -3,4 +3,5 @@
 source "http://rubygems.org"
 
 gem "sinatra"
-
+gem "Selenium"
+gem "selenium-client"
