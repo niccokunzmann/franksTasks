@@ -8,6 +8,10 @@ get '/' do
     erb :index
 end
 
+get '/exit' do
+  exit
+end
+
 __END__
 
 @@layout
