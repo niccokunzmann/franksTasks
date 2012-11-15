@@ -1,29 +1,33 @@
 require 'rubygems'
 require 'sinatra'
 
-set :run, true
-set :server, ['webrick']
 
-get '/' do
-    erb :index
+class FranksTaskApp <Sinatra::Base
+
+    #set :run, true
+    #set :server, ['webrick']
+    set :app_file, __FILE__ # Affects :views, :public and :root
+    
+    def initialize(*args)
+        super
+        @title = "Frank's Tasks"
+        @nav_bar =  <<-EOS
+            <ul class="menu">
+              <li><a href="/tasks">My Tasks</a></li>
+              <li><a href="/newtask">New Task</a></li>
+            </ul>
+        EOS
+    end
+
+    error do
+      e = request.env['sinatra.error']
+      "There was an error: #{e}"
+    end
+
+    get '/' do
+      erb :franksTasks
+    end
 end
 
 __END__
 
-@@layout
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Frank's Tasks</title>
-    <meta http-equiv="Content-Type" content="text/html;  charset=iso-8859-1" />
-  </head>
-  <body>
-    <h2>Frank's Tasks</h2>
-    <%= yield %>
-  </body>
-</html>
-
-
-@@index
-  <h3>Tasks ToDo:</h3>
-  <p>Sinatra <%= Sinatra::VERSION %> says Hello at <%= Time.now %></p>
