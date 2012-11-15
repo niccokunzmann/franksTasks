@@ -1,0 +1,10 @@
+<h3>Create a new user:</h3>
+<form method="post" action="/register">
+  <ul>
+    <li>Username: <input type="text" name="username" /> </li>
+    <li>Password:  <input type="text" name="password" /> </li>
+    <li><input type="submit" value="register"></li>
+  </ul>
+</form>
+
+<p>Already registered? <a href="/login"> Login</a> to an existing account.</p>
