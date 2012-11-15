@@ -44,7 +44,7 @@ task :test do
   sh 'maglev-ruby test/test_all.rb'
 end
 
-desk "run tests under ruby"
+desc "run tests under ruby"
 task :testr do
   sh '/bin/sh test/start-selenium.sh'
   sh 'ruby test/test_all.rb'
