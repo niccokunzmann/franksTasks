@@ -18,3 +18,10 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+selenium-server.log
+selenium-server-standalone-2.25.0.jar
+
+testWebsite.rb
+Gemfile.lock
+gem/*

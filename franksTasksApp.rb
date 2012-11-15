@@ -3,7 +3,6 @@ require 'sinatra'
 
 
 class FranksTaskApp <Sinatra::Base
-
     #set :run, true
     #set :server, ['webrick']
     set :app_file, __FILE__ # Affects :views, :public and :root
@@ -17,6 +16,10 @@ class FranksTaskApp <Sinatra::Base
               <li><a href="/newtask">New Task</a></li>
             </ul>
         EOS
+    end
+
+    get '/exit' do
+      exit
     end
 
     error do
