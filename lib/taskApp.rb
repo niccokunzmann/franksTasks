@@ -21,9 +21,9 @@ class AppUser
   
   attr_reader :login, :password, :tasks
   
-  def initialize(login, password)
-    @login = login.to_s
-    @password = password.to_s
+  def initialize(params)
+    @login = params[:login].to_s
+    @password = params[:password].to_s
     @tasks = []
   end
   
@@ -33,7 +33,7 @@ class AppUser
   
   def self.validateUser(login, password)
     user = AppUser.detect {|u| u.login == login and u.password == password}
-    return !user.nil?
+    return user
   end
   
   def addTask(task)
