@@ -6,8 +6,10 @@
 require 'sinatra'
 require 'franksTasksApp'
 require 'txn_wrapper'
+require 'maglev_session'
 
 use MagLevTransactionWrapper
+use MaglevSession
 
 map "/" do
   run FranksTaskApp

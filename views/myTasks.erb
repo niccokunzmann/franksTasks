@@ -1,6 +1,18 @@
-<h3>Welcome to a simple blog</h3>
-<ul>
-<% @tasks.each do |task| %>
-  <li><a href="/task/<%= task.__id__ %>"> <%= task.title %></a></li>
-<% end %>
-</ul>
+<h3>My Tasks</h3>
+<table cellspacing="10">
+  <td><tr>
+    <th>Task Title</th>
+    <th>Completed</th>
+  </tr></td>
+  <% user = AppUser.validateUser(session["user"].split[0], session["user"].split[1]) %>
+  <% if user.tasks != [] %>
+    <% user.tasks.each do |task| %>
+      <tr><td><a href="/task/<%= task.__id__ %>"><%= task.title %></a></td> <td><%= (task.isCompleted != 0) ? "done" : "not done" %></td> </tr>
+    <% end %>
+  <% else %>
+    <p>There do not appear to be any tasks...</p>
+  <% end %>
+</table>
+ 
+ <p><a href="/newtask">Create a new task</a></p>
+

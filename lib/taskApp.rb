@@ -1,4 +1,4 @@
-require 'maglev_model'
+require 'maglev_model2'
 
 class SimpleTask
   include Maglev::Model
@@ -9,11 +9,18 @@ class SimpleTask
     @description =  params[:description]
     @timestamp = Time.now
     @dueDate = params[:dueDate]
-    @isCompleted = params[:isCompleted]
+    @isCompleted = params[:isCompleted].to_i
   end
 
   def done
     @isCompleted = true
+  end
+  
+  def self.findById(id)
+    puts "In method"
+    SimpleTask.detect {|t| 
+      puts "ID:::::::#{t.__id__}" 
+      t.__id__.to_i == id.to_i}
   end
 end
 class AppUser
@@ -22,18 +29,17 @@ class AppUser
   attr_reader :login, :password, :tasks
   
   def initialize(params)
-    @login = params[:login].to_s
-    @password = params[:password].to_s
+    @login = params[:login]
+    @password = params[:password]
     @tasks = []
   end
   
   def to_s
-    @login
+    "#{@login} #{@password}"
   end
   
   def self.validateUser(login, password)
-    user = AppUser.detect {|u| u.login == login and u.password == password}
-    return user
+    AppUser.detect {|u| (u.login == login) and (u.password == password)}
   end
   
   def addTask(task)
