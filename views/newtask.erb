@@ -1,11 +1,13 @@
+
+
 <h3>New Task</h3>
-<form method="post" action="/newtask">
-  <ul>
-    <li>Task title: <input type="text" name="title" /> </li>
-    <li>Due date:  <input type="text" name="dueDate" /> </li>
-    <li><input type="radio" name="isCompleted" value=1> done</input>
-    <input type="radio" name="isCompleted" value=0> not done</input></li>
-    <li>Description:  <textarea name="description" rows="7" cols="50"></textarea></li>
-    <li><input type="submit" value="Create Task"></li>
-  </ul>
+<form method="post" action="/task/new">
+    <p>Task title: <input type="text" name="title" required="true" /> </p>
+    <p>Due date:  <input type="date" name="dueDate" required="true"/> </p>
+    <p><input type="radio" name="isCompleted" value=1> done</input>
+    <input type="radio" name="isCompleted" value=0> not done</input></p>
+    <p>Description:  <textarea name="description" rows="7" cols="50" ></textarea></p>
+    <p><input type="submit" value="Create Task"></p>
 </form>
+
+<p><a href="/mytasks">Back to My Tasks</a></p>

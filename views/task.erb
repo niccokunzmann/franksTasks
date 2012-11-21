@@ -1,3 +1,5 @@
+
+
 <h3><%= @task.title %></h3>
 <p>Due date: <%= @task.dueDate %></p>
 <p>Completed: <%= (@task.isCompleted != 0) ? "done" : "not done" %></p>
@@ -10,3 +12,5 @@
     <li><input type="submit" value="Update"></li>
   </ul>
 </form>
+
+<p><a href="/mytasks">Back to My Tasks</a></p>

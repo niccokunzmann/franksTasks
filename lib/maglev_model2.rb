@@ -35,7 +35,6 @@ module Maglev
       # the calling class, then no object will be found (even if +id+ is the
       # valid id of soome instance of another class).
       def get(id)
-        puts "ID::::#{id}"
         Maglev::PERSISTENT_ROOT[self][id.to_i]
       end
 
