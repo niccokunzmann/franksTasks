@@ -1,4 +1,12 @@
 <h3><%= @task.title %></h3>
-<p><%= @task.dueDate %></p>
-<p><%= (@task.isCompleted != 0) ? "done" : "not done" %></p>
-<p><%= @task.description %></p>
+<p>Due date: <%= @task.dueDate %></p>
+<p>Completed: <%= (@task.isCompleted != 0) ? "done" : "not done" %></p>
+<p>Description: <%= @task.description %></p>
+
+<form method="post" action="/task/<%= @task.__id__ %>/completion">
+  <ul>
+    <li><input type="radio" name="isCompleted" value=1> done</input>
+    <input type="radio" name="isCompleted" value=0> not done</input></li>
+    <li><input type="submit" value="Update"></li>
+  </ul>
+</form>

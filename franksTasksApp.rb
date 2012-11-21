@@ -82,9 +82,18 @@ class FranksTaskApp <Sinatra::Base
     end
   end
   
+  post '/task/:id/completion' do
+    task = AppTask.get(params[:id])
+    Maglev.abort_transaction
+    (params[:isCompleted] != 0) ? task.done : task.not_done
+    Maglev.commit_transaction
+    redirect "task/#{params[:id]}"
+  end
+    
+  
   get '/task/:id' do
     puts "ALL TASK2 #{params[:id]} #{AppTask.all} #{AppTask.all.class} #{AppTask.all.__id__}"
-    task = AppTask.findById(params[:id].to_i)
+    task = AppTask.get(params[:id])
     if task
       @task = task
       erb :task

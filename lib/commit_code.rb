@@ -5,7 +5,7 @@
 force = ARGV[0] =~ /force/
 
 Maglev.abort_transaction
-if true #force or not defined? SimpleTask
+if force or not defined? SimpleTask
   Maglev.persistent do
     # Use load rather than require to force re-reading of the files
     load 'taskApp.rb'

@@ -17,7 +17,11 @@ class AppTask
   end
 
   def done
-    @isCompleted = true
+    @isCompleted = 1
+  end
+  
+  def not_done
+    @isCompleted = 0
   end
   
   def self.findById(id)
