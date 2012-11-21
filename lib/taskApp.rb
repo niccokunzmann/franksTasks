@@ -1,6 +1,6 @@
 require 'maglev_model2'
 
-class SimpleTask
+class AppTask
   include Maglev::Model
 
   attr_reader :description, :title, :timestamp, :tags, :dueDate, :isCompleted
@@ -11,6 +11,10 @@ class SimpleTask
     @dueDate = params[:dueDate]
     @isCompleted = params[:isCompleted].to_i
   end
+  
+  def to_s
+    "Title: #{@title}, Text: #{@description}, ID: #{__id__}"
+  end
 
   def done
     @isCompleted = true
@@ -18,7 +22,7 @@ class SimpleTask
   
   def self.findById(id)
     puts "In method"
-    SimpleTask.detect {|t| 
+    AppTask.detect {|t| 
       puts "ID:::::::#{t.__id__}" 
       t.__id__.to_i == id.to_i}
   end

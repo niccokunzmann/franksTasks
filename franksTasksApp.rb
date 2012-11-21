@@ -30,7 +30,7 @@ class FranksTaskApp <Sinatra::Base
 
   get '/' do
     session["user"] ||= nil
-    puts "#{SimpleTask.all.class}"
+    puts "ALL 1 #{AppTask.all.class}"
     erb :franksTasks
   end
   
@@ -46,29 +46,6 @@ class FranksTaskApp <Sinatra::Base
     erb :newtask
   end
   
-  post '/newtask' do
-    task = SimpleTask.persistent_new(params)
-    ObjectLogEntry.info("A new Task", task).add_to_log
-    user = AppUser.validateUser(session["user"].split[0], session["user"].split[1])
-    puts "ALL #{task.__id__} #{SimpleTask.all} #{SimpleTask.all.class} #{SimpleTask.all.__id__}"
-    user.addTask(task)
-    redirect '/mytasks'
-  end
-  
-  get '/task/:id' do
-    puts "DOOOING!!!!!"
-    puts "ALL #{SimpleTask.all} #{SimpleTask.all.class} #{SimpleTask.all.__id__}"
-    SimpleTask.all.each do |task|
-      puts task.__id__
-    end
-    task = SimpleTask.findById(params[:id].to_i)
-    puts params[:id]
-    puts task
-    raise "Page not found (id: #{params[:id]})" unless task
-    @task = task
-    erb :task
-  end
-  
   get '/register' do
     erb :register
   end
@@ -76,16 +53,43 @@ class FranksTaskApp <Sinatra::Base
   post '/register' do
     user = AppUser.persistent_new(params)
     ObjectLogEntry.info("A new User", user).add_to_log
+    puts "ALL USER1 #{user.__id__} #{AppUser.all} #{AppUser.all.class} #{AppUser.all.__id__}"
     redirect '/login'
+  end
+  
+  post '/newtask' do
+    Maglev.abort_transaction
+    task = AppTask.persistent_new(params)
+    Maglev.commit_transaction
+    ObjectLogEntry.info("A new Task", task).add_to_log
+    puts "ALL TASK1 #{task.__id__} #{AppTask.all} #{AppTask.all.class} #{AppTask.all.__id__}"
+    puts "CLASS #{task.__id__.class}"
+    user = AppUser.validateUser(session["user"].split[0], session["user"].split[1])
+    Maglev.abort_transaction
+    user.addTask(task)
+    Maglev.commit_transaction
+    redirect '/mytasks'
   end
   
   post '/login' do
     user = AppUser.validateUser(params[:login], params[:password])
+    puts "ALL USER2 #{user.__id__} #{AppUser.all} #{AppUser.all.class} #{AppUser.all.__id__}"
     if !user.nil?
       session["user"] = user.to_s
       redirect '/mytasks'
     else
       raise "Login not successful"
+    end
+  end
+  
+  get '/task/:id' do
+    puts "ALL TASK2 #{params[:id]} #{AppTask.all} #{AppTask.all.class} #{AppTask.all.__id__}"
+    task = AppTask.findById(params[:id].to_i)
+    if task
+      @task = task
+      erb :task
+    else
+      raise "Page not found (id: #{params[:id]})"
     end
   end  
 end
