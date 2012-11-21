@@ -11,7 +11,16 @@
         <h1><%= @title %></h1>
       </div>
       <div id="navigation">
-        <%= @nav_bar %>
+        <ul class="menu">
+            <% if session["user"] != nil %>
+              <li><a href="/mytasks">My Tasks</a></li>
+              <li><a href="/task/new">New Task</a></li>
+              <li><a href="/logout">Logout</a></li>
+            <% else %>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/register">Register</a></li>
+            <% end %>
+          </ul>
       </div>
       <div id="content">
       <div class="left">

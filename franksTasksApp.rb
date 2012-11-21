@@ -10,14 +10,6 @@ class FranksTaskApp <Sinatra::Base
   def initialize(*args)
       super
       @title = "Frank's Tasks"
-      
-      @nav_bar =  <<-EOS
-          <ul class="menu">
-            <li><a href="/mytasks">My Tasks</a></li>
-            <li><a href="/task/new">New Task</a></li>
-            <li><a href="/logout">Logout</a></li>
-          </ul>
-      EOS
   end
 
   get '/exit' do
