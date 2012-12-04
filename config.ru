@@ -1,7 +1,7 @@
 # This runs both the blog app and the object log viewer as separate
 # Sinatra apps in the same process
 #
-#\ --port 4444 --host localhost
+#\ --port 4444		
 
 require 'sinatra'
 require 'franksTasksApp'

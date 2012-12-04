@@ -12,10 +12,6 @@ class FranksTaskApp <Sinatra::Base
       @title = "Frank's Tasks"
   end
 
-  get '/exit' do
-    exit
-  end
-
   error do
     e = request.env['sinatra.error']
     "There was an error: #{e}"
@@ -79,7 +75,7 @@ class FranksTaskApp <Sinatra::Base
   post '/task/:id/completion' do
     task = AppTask.get(params[:id])
     Maglev.abort_transaction
-    (params[:isCompleted] != 0) ? task.done : task.not_done
+    (params[:isCompleted] != "0") ? task.done : task.not_done
     Maglev.commit_transaction
     redirect "task/#{params[:id]}"
   end
