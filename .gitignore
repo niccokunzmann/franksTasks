@@ -26,3 +26,4 @@ testWebsite.rb
 Gemfile.lock
 gem/*
 *~
+.redcar
