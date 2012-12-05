@@ -8,7 +8,7 @@ task :default => :blog
 
 desc "Commit the base blog code to the repository."
 task :commit, :force do |t,args|
-  sh %{ maglev-ruby -Ilib ~/Documents/franksTasks/lib/commit_code.rb #{args.force} }
+  sh %{ maglev-ruby -Ilib ~/Documents/franksTasks/lib/commit_code.rb}
 end
 
 desc "Run the blog app, committing the blog code if necessary"

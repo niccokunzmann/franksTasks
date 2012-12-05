@@ -1,7 +1,7 @@
 require 'maglev_model2'
 
 class AppTask
-  include Maglev::Model
+  include Maglev::Model2
 
   attr_reader :description, :title, :timestamp, :tags, :dueDate, :isCompleted
   def initialize(params)
@@ -32,7 +32,7 @@ class AppTask
   end
 end
 class AppUser
-  include Maglev::Model
+  include Maglev::Model2
   
   attr_reader :login, :password, :tasks
   

@@ -6,11 +6,9 @@
 <p>Description: <%= @task.description %></p>
 
 <form method="post" action="/task/<%= @task.__id__ %>/completion">
-  <ul>
-    <li><input type="radio" name="isCompleted" value=1> done</input>
-    <input type="radio" name="isCompleted" value=0> not done</input></li>
-    <li><input type="submit" value="Update"></li>
-  </ul>
+    <p><input type="radio" name="isCompleted" value=1> done</input>
+    <input type="radio" name="isCompleted" value=0> not done</input></p>
+    <p><input type="submit" value="Update"></p>
 </form>
 
 <p><a href="/mytasks">Back to My Tasks</a></p>
